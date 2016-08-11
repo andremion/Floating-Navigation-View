@@ -1,53 +1,55 @@
 # Floating Navigation View
 
-A simple Floating Action Button that shows an anchored Navigation View
+A simple Floating Action Button that shows an anchored Navigation View and was inspired by [Menu Material Fixed](http://www.uplabs.com/posts/menu-material-fixed) created by [Tommaso Poletti](http://www.uplabs.com/tomma5o)
 
 ![Sample](https://raw.githubusercontent.com/andremion/Floating-Navigation-View/master/art/sample.gif)
-
-## Inspiration
-
-This library was inspired by [Menu Material Fixed](http://www.uplabs.com/posts/menu-material-fixed) created by [Tommaso Poletti](http://www.uplabs.com/tomma5o)
 
 ## Installation
 
 Include the library in your `build.gradle`
 
-    dependencies{
-        compile 'com.github.andremion:floatingnavigationview:1.0.0'
-    }
+```groovy
+dependencies{
+    compile 'com.github.andremion:floatingnavigationview:1.0.0'
+}
+```
 
 or in your `pom.xml` if you are using Maven
 
-    <dependency>
-      <groupId>com.github.andremion</groupId>
-      <artifactId>floatingnavigationview</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+```xml
+<dependency>
+  <groupId>com.github.andremion</groupId>
+  <artifactId>floatingnavigationview</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
 
 ## Usage
 
-    <?xml version="1.0" encoding="utf-8"?>
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-    
-        ...
-    
-        <com.andremion.floatingnavigationview.FloatingNavigationView
-            android:id="@+id/floating_navigation_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/fab_margin"
-            app:layout_anchor="@id/toolbar"
-            app:layout_anchorGravity="bottom|end"
-            app:drawMenuBelowFab="true"
-            app:headerLayout="@layout/navigation_view_header"
-            app:menu="@menu/menu_navigation_view" />
-    
-    </android.support.design.widget.CoordinatorLayout>
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    ...
+
+    <com.andremion.floatingnavigationview.FloatingNavigationView
+        android:id="@+id/floating_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/fab_margin"
+        app:layout_anchor="@id/toolbar"
+        app:layout_anchorGravity="bottom|end"
+        app:drawMenuBelowFab="true"
+        app:headerLayout="@layout/navigation_view_header"
+        app:menu="@menu/menu_navigation_view" />
+
+</android.support.design.widget.CoordinatorLayout>
+```
 
 ###Custom attributes
 
@@ -59,8 +61,6 @@ or in your `pom.xml` if you are using Maven
     
 3. If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
-
-You can explore more in [the sample](https://github.com/andremion/Floating-Navigation-View/tree/master/sample/src/main/java/com/andremion/floatingnavigationview/sample) 
 
 ## Libraries used in the project
 
