@@ -21,6 +21,7 @@ or in your `pom.xml` if you are using Maven
   <groupId>com.github.andremion</groupId>
   <artifactId>floatingnavigationview</artifactId>
   <version>1.0.0</version>
+  <type>aar</type>
 </dependency>
 ```
 
