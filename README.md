@@ -63,10 +63,12 @@ or in your `pom.xml` if you are using Maven
 3. If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
 
-## Libraries used in the project
+## Libraries and tools used in the project
 
 * [Design Support Library](http://developer.android.com/intl/pt-br/tools/support-library/features.html#design)
 The Design package provides APIs to support adding material design components and patterns to your apps.
+* [VectAlign](https://github.com/bonnyfone/vectalign)
+VectAlign is a developer's tool which aligns two VectorDrawable "pathData" strings (or SVG images) in order to allow morphing animations between them using an AnimatedVectorDrawable.
 
 ### License
 
