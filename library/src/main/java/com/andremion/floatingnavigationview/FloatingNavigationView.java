@@ -64,9 +64,6 @@ public class FloatingNavigationView extends FloatingActionButton {
     private final NavigationMenuView mNavigationMenuView;
     private final ImageView mFabView;
 
-    private final AnimatedVectorDrawable mMenuIcon;
-    private final AnimatedVectorDrawable mCloseIcon;
-
     private final Rect mFabRect = new Rect();
     private final Rect mNavigationRect = new Rect();
 
@@ -118,10 +115,6 @@ public class FloatingNavigationView extends FloatingActionButton {
         mFabView.setContentDescription(getContentDescription());
         mFabView.bringToFront();
 
-        // Animated Icons
-        mMenuIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(context, R.drawable.ic_menu_animated);
-        mCloseIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(context, R.drawable.ic_close_animated);
-
         // Custom attributes
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MenuView, defStyleAttr, R.style.Widget_Design_NavigationView);
         if (a.hasValue(R.styleable.MenuView_menu)) {
@@ -171,7 +164,7 @@ public class FloatingNavigationView extends FloatingActionButton {
         //noinspection unchecked
         mNavigationView.restoreHierarchyState(ss.navigationViewState);
         if (ss.opened) {
-            mFabView.setImageDrawable(mCloseIcon);
+            mFabView.setImageResource(R.drawable.ic_close_vector);
             // Run on post to prevent "unable to add window -- token null is not valid" error
             post(new Runnable() {
                 @Override
@@ -250,8 +243,11 @@ public class FloatingNavigationView extends FloatingActionButton {
     private void startOpenAnimations() {
 
         // Icon
-        mFabView.setImageDrawable(mMenuIcon);
-        mMenuIcon.start();
+        // Animated Icons
+        AnimatedVectorDrawable menuIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(),
+                R.drawable.ic_menu_animated);
+        mFabView.setImageDrawable(menuIcon);
+        menuIcon.start();
 
         // Reveal
         int centerX = mFabRect.centerX();
@@ -275,8 +271,10 @@ public class FloatingNavigationView extends FloatingActionButton {
     private void startCloseAnimations() {
 
         // Icon
-        mFabView.setImageDrawable(mCloseIcon);
-        mCloseIcon.start();
+        AnimatedVectorDrawable closeIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(),
+                R.drawable.ic_close_animated);
+        mFabView.setImageDrawable(closeIcon);
+        closeIcon.start();
 
         // Unreveal
         int centerX = mFabRect.centerX();
