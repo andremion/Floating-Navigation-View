@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Floating Navigation View</string>
+    <string name="developer">André Mion</string>
+    <string name="website">https://github.com/andremion</string>
+    <string name="menu_item_import">Import</string>
+    <string name="menu_item_gallery">Gallery</string>
+    <string name="menu_item_slideshow">Slideshow</string>
+    <string name="menu_item_tools">Tools</string>
+    <string name="menu_group_communicate">Communicate</string>
+    <string name="menu_item_share">Share</string>
+    <string name="menu_item_send">Send</string>
+</resources>
