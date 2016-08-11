@@ -2,7 +2,7 @@
 
 A simple Floating Action Button that shows an anchored Navigation View
 
-![Sample](https://raw.githubusercontent.com/andremion/Floating-Navigation-Views/master/art/sample.gif)
+![Sample](https://raw.githubusercontent.com/andremion/Floating-Navigation-View/master/art/sample.gif)
 
 ## Inspiration
 
