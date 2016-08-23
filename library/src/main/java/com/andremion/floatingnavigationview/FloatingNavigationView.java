@@ -68,7 +68,7 @@ public class FloatingNavigationView extends FloatingActionButton {
     private final Rect mNavigationRect = new Rect();
 
     private final boolean mDrawMenuBelowFab;
-    private OnTouchListener mNavigationTouchListener = new OnTouchListener() {
+    private final OnTouchListener mNavigationTouchListener = new OnTouchListener() {
         @Override
         public boolean onTouch(@NonNull View v, @NonNull MotionEvent event) {
             final int x = (int) event.getX();
@@ -85,7 +85,7 @@ public class FloatingNavigationView extends FloatingActionButton {
             return false;
         }
     };
-    private OnClickListener mFabClickListener = new OnClickListener() {
+    private final OnClickListener mFabClickListener = new OnClickListener() {
         @Override
         public void onClick(View v) {
             close();
@@ -144,43 +144,6 @@ public class FloatingNavigationView extends FloatingActionButton {
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         detachNavigationView(); // Prevent Leaked Window when configuration changes
-    }
-
-    @Override
-    protected Parcelable onSaveInstanceState() {
-        Parcelable superState = super.onSaveInstanceState();
-        SavedState ss = new SavedState(superState);
-        ss.navigationViewState = new SparseArray();
-        //noinspection unchecked
-        mNavigationView.saveHierarchyState(ss.navigationViewState);
-        ss.opened = isOpened();
-        return ss;
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Parcelable state) {
-        SavedState ss = (SavedState) state;
-        super.onRestoreInstanceState(ss.getSuperState());
-        //noinspection unchecked
-        mNavigationView.restoreHierarchyState(ss.navigationViewState);
-        if (ss.opened) {
-            mFabView.setImageResource(R.drawable.ic_close_vector);
-            // Run on post to prevent "unable to add window -- token null is not valid" error
-            post(new Runnable() {
-                @Override
-                public void run() {
-                    attachNavigationView();
-                    mNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                        @Override
-                        public void onGlobalLayout() {
-                            mNavigationView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-                            updateFabBounds();
-                            drawMenuBelowFab();
-                        }
-                    });
-                }
-            });
-        }
     }
 
     public void open() {
@@ -243,7 +206,6 @@ public class FloatingNavigationView extends FloatingActionButton {
     private void startOpenAnimations() {
 
         // Icon
-        // Animated Icons
         AnimatedVectorDrawable menuIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(),
                 R.drawable.ic_menu_animated);
         mFabView.setImageDrawable(menuIcon);
@@ -437,30 +399,55 @@ public class FloatingNavigationView extends FloatingActionButton {
      * {@link SavedState} methods
      */
 
+    @Override
+    protected Parcelable onSaveInstanceState() {
+        Parcelable superState = super.onSaveInstanceState();
+        SavedState ss = new SavedState(superState);
+        ss.navigationViewState = new SparseArray();
+        //noinspection unchecked
+        mNavigationView.saveHierarchyState(ss.navigationViewState);
+        ss.opened = isOpened();
+        return ss;
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Parcelable state) {
+        SavedState ss = (SavedState) state;
+        super.onRestoreInstanceState(ss.getSuperState());
+        //noinspection unchecked
+        mNavigationView.restoreHierarchyState(ss.navigationViewState);
+        if (ss.opened) {
+            mFabView.setImageResource(R.drawable.ic_close_vector);
+            // Run on post to prevent "unable to add window -- token null is not valid" error
+            post(new Runnable() {
+                @Override
+                public void run() {
+                    attachNavigationView();
+                    mNavigationView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            mNavigationView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            updateFabBounds();
+                            drawMenuBelowFab();
+                        }
+                    });
+                }
+            });
+        }
+    }
+
     public static class SavedState extends AbsSavedState {
 
-        public static final Parcelable.Creator<SavedState> CREATOR
-                = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
-            @Override
-            public SavedState createFromParcel(Parcel parcel, ClassLoader loader) {
-                return new SavedState(parcel, loader);
-            }
+        private SparseArray navigationViewState;
+        private boolean opened;
 
-            @Override
-            public SavedState[] newArray(int size) {
-                return new SavedState[size];
-            }
-        });
-        public SparseArray navigationViewState;
-        public boolean opened;
-
-        public SavedState(Parcel in, ClassLoader loader) {
+        private SavedState(Parcel in, ClassLoader loader) {
             super(in, loader);
             navigationViewState = in.readSparseArray(loader);
             opened = (Boolean) in.readValue(loader);
         }
 
-        public SavedState(Parcelable superState) {
+        private SavedState(Parcelable superState) {
             super(superState);
         }
 
@@ -478,5 +465,18 @@ public class FloatingNavigationView extends FloatingActionButton {
                     + Integer.toHexString(System.identityHashCode(this))
                     + " opened=" + opened + "}";
         }
+
+        public static final Parcelable.Creator<SavedState> CREATOR
+                = ParcelableCompat.newCreator(new ParcelableCompatCreatorCallbacks<SavedState>() {
+            @Override
+            public SavedState createFromParcel(Parcel parcel, ClassLoader loader) {
+                return new SavedState(parcel, loader);
+            }
+
+            @Override
+            public SavedState[] newArray(int size) {
+                return new SavedState[size];
+            }
+        });
     }
 }
