@@ -19,7 +19,7 @@ android {
     }
 }
 
-def final APP_COMPAT_VERSION = "24.1.1"
+def final APP_COMPAT_VERSION = "24.2.0"
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
