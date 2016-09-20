@@ -59,13 +59,13 @@ or in your `pom.xml` if you are using Maven
 
 ###Custom attributes
 
-1. The menu resource to inflate and populate items from
+- The menu resource to inflate and populate items from
 `<attr name="menu" format="reference" />`
     
-2. Layout resource to inflate as the header
+- Layout resource to inflate as the header
 `<attr name="headerLayout" format="reference" />`
     
-3. If menu must be drawn below the FAB
+- If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
 
 See more at the [sample](https://github.com/andremion/Floating-Navigation-View/tree/master/sample)
