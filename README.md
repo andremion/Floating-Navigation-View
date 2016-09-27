@@ -2,6 +2,7 @@
 ![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
 ![compileSdkVersion 24](https://img.shields.io/badge/compileSdkVersion-24-yellow.svg?style=true)
 ![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)
+
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
 [![Android Weekly #224](https://img.shields.io/badge/Android%20Weekly-%23224-blue.svg?style=true)](http://androidweekly.net/issues/issue-224)
 # Floating Navigation View
