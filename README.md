@@ -1,8 +1,10 @@
-[![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
 ![compileSdkVersion 24](https://img.shields.io/badge/compileSdkVersion-24-yellow.svg?style=true)
 ![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)
+
+[![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
+[![Android Weekly #224](https://img.shields.io/badge/Android%20Weekly-%23224-blue.svg?style=true)](http://androidweekly.net/issues/issue-224)
 # Floating Navigation View
 
 A simple Floating Action Button that shows an anchored Navigation View and was inspired by [Menu Material Fixed](http://www.uplabs.com/posts/menu-material-fixed) created by [Tommaso Poletti](http://www.uplabs.com/tomma5o)
@@ -59,13 +61,13 @@ or in your `pom.xml` if you are using Maven
 
 ###Custom attributes
 
-1. The menu resource to inflate and populate items from
+- The menu resource to inflate and populate items from
 `<attr name="menu" format="reference" />`
     
-2. Layout resource to inflate as the header
+- Layout resource to inflate as the header
 `<attr name="headerLayout" format="reference" />`
     
-3. If menu must be drawn below the FAB
+- If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
 
 See more at the [sample](https://github.com/andremion/Floating-Navigation-View/tree/master/sample)
