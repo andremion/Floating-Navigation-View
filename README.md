@@ -5,6 +5,7 @@
 
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
 [![Android Weekly #224](https://img.shields.io/badge/Android%20Weekly-%23224-blue.svg?style=true)](http://androidweekly.net/issues/issue-224)
+[![Android Sweets #38](https://img.shields.io/badge/Android%20Sweets-%2338-ff69b4.svg?style=true)](https://androidsweets.ongoodbits.com/2016/09/29/issue-38)
 # Floating Navigation View
 
 A simple Floating Action Button that shows an anchored Navigation View and was inspired by [Menu Material Fixed](http://www.uplabs.com/posts/menu-material-fixed) created by [Tommaso Poletti](http://www.uplabs.com/tomma5o)
