@@ -8,6 +8,7 @@
 [![Android Weekly #224](https://img.shields.io/badge/Android%20Weekly-%23224-blue.svg?style=true)](http://androidweekly.net/issues/issue-224)
 [![Android Sweets #38](https://img.shields.io/badge/Android%20Sweets-%2338-ff69b4.svg?style=true)](https://androidsweets.ongoodbits.com/2016/09/29/issue-38)
 [![Android UI OpenSource](https://img.shields.io/badge/Android%20UI%20OpenSource-2016-yellow.svg?style=true)](http://android.kmshack.kr/page2/)
+[![Awesome Android](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/JStumpp/awesome-android#navigation)
 
 # Floating Navigation View
 
