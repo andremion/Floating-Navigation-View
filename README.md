@@ -1,7 +1,7 @@
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
 ![compileSdkVersion 24](https://img.shields.io/badge/compileSdkVersion-24-yellow.svg?style=true)
-![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)
+[![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.andremion%7Cfloatingnavigationview%7C1.0.1%7Caar)
 
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
 [![MaterialUp Floating-Navigation-View](https://img.shields.io/badge/MaterialUp-Floating--Navigation--View-blue.svg?style=true)](https://www.uplabs.com/posts/floating-navigation-view)
