@@ -20,8 +20,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
@@ -55,7 +55,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-@SuppressLint({"InflateParams", "PrivateResource", "RtlHardcoded"})
+@SuppressWarnings({"FieldCanBeLocal", "InflateParams", "RtlHardcoded", "unused", "WeakerAccess"})
 public class FloatingNavigationView extends FloatingActionButton {
 
     private final WindowManager mWindowManager;
@@ -107,6 +107,7 @@ public class FloatingNavigationView extends FloatingActionButton {
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
         mNavigationView = (NavigationView) LayoutInflater.from(context).inflate(R.layout.navigation_view, null);
+        mNavigationView.setBackgroundTintList(getBackgroundTintList());
         mNavigationView.setOnTouchListener(mNavigationTouchListener);
         mNavigationMenuView = (NavigationMenuView) mNavigationView.findViewById(R.id.design_navigation_view);
 
@@ -125,6 +126,12 @@ public class FloatingNavigationView extends FloatingActionButton {
         }
         mDrawMenuBelowFab = a.getBoolean(R.styleable.MenuView_drawMenuBelowFab, false);
         a.recycle();
+    }
+
+    @Override
+    public void setBackgroundTintList(@Nullable ColorStateList tint) {
+        super.setBackgroundTintList(tint);
+        mNavigationView.setBackgroundTintList(tint);
     }
 
     @NonNull
@@ -316,8 +323,8 @@ public class FloatingNavigationView extends FloatingActionButton {
         mNavigationView.setNavigationItemSelectedListener(listener);
     }
 
-    /**
-     * {@link NavigationView} methods
+    /*
+      {@link NavigationView} methods
      */
 
     /**
