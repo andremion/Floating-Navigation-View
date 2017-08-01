@@ -75,6 +75,20 @@ or in your `pom.xml` if you are using Maven
 - If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
 
+The recommended way to customize the background color is by using the `app:backgroundTint` attribute in `xml` or `setBackgroundTintList` in `Java`
+
+```xml
+<com.andremion.floatingnavigationview.FloatingNavigationView
+        android:id="@+id/floating_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:backgroundTint="#009688" />
+```
+
+```java
+mNavigationView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#009688")));
+```
+
 See more at the [sample](https://github.com/andremion/Floating-Navigation-View/tree/master/sample)
 
 ## Libraries and tools used in the project
