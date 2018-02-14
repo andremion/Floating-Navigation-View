@@ -22,7 +22,7 @@ Include the library in your `build.gradle`
 
 ```groovy
 dependencies{
-    compile 'com.github.andremion:floatingnavigationview:1.1.0'
+    compile 'com.github.andremion:floatingnavigationview:1.1.1'
 }
 ```
 
@@ -32,7 +32,7 @@ or in your `pom.xml` if you are using Maven
 <dependency>
   <groupId>com.github.andremion</groupId>
   <artifactId>floatingnavigationview</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <type>aar</type>
 </dependency>
 ```
