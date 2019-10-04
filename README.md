@@ -1,6 +1,6 @@
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
-![minSdkVersion 21](https://img.shields.io/badge/minSdkVersion-21-red.svg?style=true)
-![compileSdkVersion 27](https://img.shields.io/badge/compileSdkVersion-27-yellow.svg?style=true)
+![minSdkVersion 19](https://img.shields.io/badge/minSdkVersion-19-red.svg?style=true)
+![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-yellow.svg?style=true)
 [![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.andremion%7Cfloatingnavigationview%7C1.1.1%7Caar)
 
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
@@ -41,12 +41,16 @@ or in your `pom.xml` if you are using Maven
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
 
     ...
 
@@ -61,7 +65,7 @@ or in your `pom.xml` if you are using Maven
         app:headerLayout="@layout/navigation_view_header"
         app:menu="@menu/menu_navigation_view" />
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
 ```
 
 ###Custom attributes
@@ -100,7 +104,7 @@ VectAlign is a developer's tool which aligns two VectorDrawable "pathData" strin
 
 ## License
 
-    Copyright 2016 André Mion
+    Copyright 2019 André Mion
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

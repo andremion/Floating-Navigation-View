@@ -13,13 +13,12 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<com.google.android.material.navigation.NavigationView
+<com.andremion.floatingnavigationview.CircularRevealNavigationView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_view"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     <ImageView
@@ -30,4 +29,4 @@
         android:scaleType="center"
         tools:src="@drawable/ic_menu_vector" />
 
-</com.google.android.material.navigation.NavigationView>
+</com.andremion.floatingnavigationview.CircularRevealNavigationView>
