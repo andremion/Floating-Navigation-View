@@ -25,7 +25,8 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.drawable.AnimatedVectorDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.AttributeSet;
@@ -35,34 +36,37 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewAnimationUtils;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.google.android.material.circularreveal.CircularRevealCompat;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.internal.NavigationMenuView;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.MenuRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.content.ContextCompat;
 import androidx.core.os.ParcelableCompat;
 import androidx.core.os.ParcelableCompatCreatorCallbacks;
 import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
 import androidx.customview.view.AbsSavedState;
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
 
 @SuppressWarnings({"FieldCanBeLocal", "InflateParams", "RtlHardcoded", "unused", "WeakerAccess"})
 public class FloatingNavigationView extends FloatingActionButton {
 
     private final WindowManager mWindowManager;
 
-    private final NavigationView mNavigationView;
+    private final CircularRevealNavigationView mNavigationView;
     private final NavigationMenuView mNavigationMenuView;
     private final ImageView mFabView;
 
@@ -104,12 +108,13 @@ public class FloatingNavigationView extends FloatingActionButton {
 
     public FloatingNavigationView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setImageResource(R.drawable.ic_menu_vector);
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
-        mNavigationView = (NavigationView) LayoutInflater.from(context).inflate(R.layout.navigation_view, null);
-        mNavigationView.setBackgroundTintList(getBackgroundTintList());
+        mNavigationView = (CircularRevealNavigationView) LayoutInflater.from(context).inflate(R.layout.navigation_view, null);
+        mNavigationView.setBackground(new ColorDrawable(getBackgroundColor()));
         mNavigationView.setOnTouchListener(mNavigationTouchListener);
         mNavigationMenuView = (NavigationMenuView) mNavigationView.findViewById(R.id.design_navigation_view);
 
@@ -130,10 +135,22 @@ public class FloatingNavigationView extends FloatingActionButton {
         a.recycle();
     }
 
+    private @ColorInt int getBackgroundColor() {
+        ColorStateList colorStateList = getBackgroundTintList();
+        if (colorStateList != null) {
+            return colorStateList.getDefaultColor();
+        }
+        Drawable background = getBackground();
+        if (background instanceof ColorDrawable) {
+            return ((ColorDrawable) background).getColor();
+        }
+        return getSolidColor();
+    }
+
     @Override
     public void setBackgroundTintList(@Nullable ColorStateList tint) {
         super.setBackgroundTintList(tint);
-        mNavigationView.setBackgroundTintList(tint);
+        ViewCompat.setBackgroundTintList(mNavigationView, tint);
     }
 
     @NonNull
@@ -201,7 +218,7 @@ public class FloatingNavigationView extends FloatingActionButton {
         // We need to convert script specific gravity to absolute horizontal value
         // If horizontal direction is LTR, then START will set LEFT and END will set RIGHT.
         // If horizontal direction is RTL, then START will set RIGHT and END will set LEFT.
-        gravity = Gravity.getAbsoluteGravity(gravity, getLayoutDirection());
+        gravity = Gravity.getAbsoluteGravity(gravity, ViewCompat.getLayoutDirection(this));
 
         mWindowManager.addView(mNavigationView, createLayoutParams(gravity));
     }
@@ -215,7 +232,7 @@ public class FloatingNavigationView extends FloatingActionButton {
     private void startOpenAnimations() {
 
         // Icon
-        AnimatedVectorDrawable menuIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(),
+        AnimatedVectorDrawableCompat menuIcon = AnimatedVectorDrawableCompat.create(getContext(),
                 R.drawable.ic_menu_animated);
         mFabView.setImageDrawable(menuIcon);
         menuIcon.start();
@@ -225,9 +242,9 @@ public class FloatingNavigationView extends FloatingActionButton {
         int centerY = mFabRect.centerY();
         float startRadius = getMinRadius();
         float endRadius = getMaxRadius();
-        Animator reveal = ViewAnimationUtils
-                .createCircularReveal(mNavigationView,
-                        centerX, centerY, startRadius, endRadius);
+        Animator reveal = CircularRevealCompat.createCircularReveal(
+              mNavigationView, centerX, centerY, startRadius, endRadius
+        );
 
         // Fade in
         mNavigationMenuView.setAlpha(0);
@@ -242,7 +259,7 @@ public class FloatingNavigationView extends FloatingActionButton {
     private void startCloseAnimations() {
 
         // Icon
-        AnimatedVectorDrawable closeIcon = (AnimatedVectorDrawable) ContextCompat.getDrawable(getContext(),
+        AnimatedVectorDrawableCompat closeIcon = AnimatedVectorDrawableCompat.create(getContext(),
                 R.drawable.ic_close_animated);
         mFabView.setImageDrawable(closeIcon);
         closeIcon.start();
@@ -252,9 +269,9 @@ public class FloatingNavigationView extends FloatingActionButton {
         int centerY = mFabRect.centerY();
         float startRadius = getMaxRadius();
         float endRadius = getMinRadius();
-        Animator reveal = ViewAnimationUtils
-                .createCircularReveal(mNavigationView,
-                        centerX, centerY, startRadius, endRadius);
+        Animator reveal = CircularRevealCompat.createCircularReveal(
+              mNavigationView, centerX, centerY, startRadius, endRadius
+        );
         reveal.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
@@ -278,7 +295,7 @@ public class FloatingNavigationView extends FloatingActionButton {
         layoutParams.width = getWidth();
         layoutParams.height = getHeight();
         layoutParams.topMargin = mFabRect.top;
-        if (getLayoutDirection() == LAYOUT_DIRECTION_RTL) {
+        if (ViewCompat.getLayoutDirection(this) == ViewCompat.LAYOUT_DIRECTION_RTL) {
             layoutParams.rightMargin = mNavigationView.getWidth() - mFabRect.right;
         } else {
             layoutParams.leftMargin = mFabRect.left;
