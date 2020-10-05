@@ -1,7 +1,7 @@
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 19](https://img.shields.io/badge/minSdkVersion-19-red.svg?style=true)
 ![compileSdkVersion 30](https://img.shields.io/badge/compileSdkVersion-30-yellow.svg?style=true)
-[![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.andremion%7Cfloatingnavigationview%7C1.2.0%7Caar)
+[![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.andremion%7Cfloatingnavigationview%7C1.3.0%7Caar)
 
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
 [![MaterialUp Floating-Navigation-View](https://img.shields.io/badge/MaterialUp-Floating--Navigation--View-blue.svg?style=true)](https://www.uplabs.com/posts/floating-navigation-view)
@@ -22,7 +22,7 @@ Include the library in your `build.gradle`
 
 ```groovy
 dependencies{
-    compile 'com.github.andremion:floatingnavigationview:1.2.0'
+    compile 'com.github.andremion:floatingnavigationview:1.3.0'
 }
 ```
 
@@ -32,7 +32,7 @@ or in your `pom.xml` if you are using Maven
 <dependency>
   <groupId>com.github.andremion</groupId>
   <artifactId>floatingnavigationview</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
   <type>aar</type>
 </dependency>
 ```

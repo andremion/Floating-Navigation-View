@@ -7,8 +7,8 @@ android {
         applicationId "com.andremion.floatingnavigationview.sample"
         minSdkVersion project.ext.minSdkVersion
         targetSdkVersion project.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode = VERSION_CODE
+        versionName = VERSION_NAME
     }
     buildTypes {
         release {
