@@ -20,6 +20,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
@@ -32,7 +33,6 @@ import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.SparseArray;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
@@ -40,11 +40,6 @@ import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-
-import com.google.android.material.circularreveal.CircularRevealCompat;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.internal.NavigationMenuView;
-import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.IdRes;
@@ -60,6 +55,11 @@ import androidx.core.view.MotionEventCompat;
 import androidx.core.view.ViewCompat;
 import androidx.customview.view.AbsSavedState;
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat;
+
+import com.google.android.material.circularreveal.CircularRevealCompat;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.internal.NavigationMenuView;
+import com.google.android.material.navigation.NavigationView;
 
 @SuppressWarnings({"FieldCanBeLocal", "InflateParams", "RtlHardcoded", "unused", "WeakerAccess"})
 public class FloatingNavigationView extends FloatingActionButton {
@@ -113,26 +113,38 @@ public class FloatingNavigationView extends FloatingActionButton {
 
         mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
 
-        mNavigationView = (CircularRevealNavigationView) LayoutInflater.from(context).inflate(R.layout.navigation_view, null);
+        mNavigationView = new CircularRevealNavigationView(context, attrs, defStyleAttr);
+        setupNavigationView(context, attrs);
+        mNavigationMenuView = mNavigationView.findViewById(R.id.design_navigation_view);
+
+        mFabView = new ImageView(context, attrs, defStyleAttr);
+        setupFabView(context, attrs);
+
+        // Custom attributes
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.FloatingNavigationView);
+        mDrawMenuBelowFab = a.getBoolean(R.styleable.FloatingNavigationView_drawMenuBelowFab, false);
+        a.recycle();
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    private void setupNavigationView(Context context, AttributeSet attrs) {
         mNavigationView.setBackground(new ColorDrawable(getBackgroundColor()));
         mNavigationView.setOnTouchListener(mNavigationTouchListener);
-        mNavigationMenuView = (NavigationMenuView) mNavigationView.findViewById(R.id.design_navigation_view);
+    }
 
-        mFabView = (ImageView) mNavigationView.findViewById(R.id.fab_view);
+    @SuppressLint("PrivateResource")
+    private void setupFabView(Context context, AttributeSet attrs) {
+        TypedArray a = context.obtainStyledAttributes(attrs, new int[]{R.attr.selectableItemBackgroundBorderless});
+        mFabView.setScaleType(ScaleType.CENTER);
+        mFabView.setBackground(a.getDrawable(0));
         mFabView.setOnClickListener(mFabClickListener);
         mFabView.setContentDescription(getContentDescription());
         mFabView.bringToFront();
-
-        // Custom attributes
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MenuView, defStyleAttr, R.style.Widget_Design_NavigationView);
-        if (a.hasValue(R.styleable.MenuView_menu)) {
-            mNavigationView.inflateMenu(a.getResourceId(R.styleable.MenuView_menu, 0));
-        }
-        if (a.hasValue(R.styleable.MenuView_headerLayout)) {
-            mNavigationView.inflateHeaderView(a.getResourceId(R.styleable.MenuView_headerLayout, 0));
-        }
-        mDrawMenuBelowFab = a.getBoolean(R.styleable.MenuView_drawMenuBelowFab, false);
         a.recycle();
+        mNavigationView.addView(mFabView, new FrameLayout.LayoutParams(
+                getResources().getDimensionPixelSize(R.dimen.design_fab_size_normal),
+                getResources().getDimensionPixelSize(R.dimen.design_fab_size_normal)
+        ));
     }
 
     private @ColorInt int getBackgroundColor() {
