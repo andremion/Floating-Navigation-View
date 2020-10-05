@@ -15,11 +15,7 @@
 -->
 <resources>
 
-    <declare-styleable name="MenuView">
-        <!-- The menu resource to inflate and populate items from -->
-        <attr name="menu" format="reference" />
-        <!-- Layout resource to inflate as the header -->
-        <attr name="headerLayout" format="reference" />
+    <declare-styleable name="FloatingNavigationView">
         <!-- If menu must be drawn below the FAB -->
         <attr name="drawMenuBelowFab" format="boolean" />
     </declare-styleable>

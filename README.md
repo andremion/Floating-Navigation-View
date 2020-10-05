@@ -37,7 +37,7 @@ or in your `pom.xml` if you are using Maven
 </dependency>
 ```
 
-## Usage
+## Usage example
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -59,6 +59,7 @@ or in your `pom.xml` if you are using Maven
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/fab_margin"
+        android:theme="@style/AppTheme.AppBarOverlay"
         app:layout_anchor="@id/toolbar"
         app:layout_anchorGravity="bottom|end"
         app:drawMenuBelowFab="true"
@@ -75,7 +76,13 @@ or in your `pom.xml` if you are using Maven
     
 - Layout resource to inflate as the header
 `<attr name="headerLayout" format="reference" />`
-    
+
+- Item text customizations
+`<attr name="itemIconTint" format="color"/>`
+`<attr name="itemTextColor" format="color"/>`
+`<attr name="itemBackground" format="reference"/>`
+`<attr name="itemTextAppearance" format="reference"/>`
+
 - If menu must be drawn below the FAB
 `<attr name="drawMenuBelowFab" format="boolean" />`
 
@@ -91,6 +98,16 @@ The recommended way to customize the background color is by using the `app:backg
 
 ```java
 mNavigationView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#009688")));
+```
+
+You can also set the button icon color according to the theme by setting the `android:tint` to a theme attribute:
+
+```xml
+<com.andremion.floatingnavigationview.FloatingNavigationView
+        android:id="@+id/floating_navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="?android:textColorPrimary" />
 ```
 
 See more at the [sample](https://github.com/andremion/Floating-Navigation-View/tree/master/sample)
