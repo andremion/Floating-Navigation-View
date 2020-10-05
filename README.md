@@ -1,6 +1,6 @@
 [![License Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg?style=true)](http://www.apache.org/licenses/LICENSE-2.0)
 ![minSdkVersion 19](https://img.shields.io/badge/minSdkVersion-19-red.svg?style=true)
-![compileSdkVersion 29](https://img.shields.io/badge/compileSdkVersion-29-yellow.svg?style=true)
+![compileSdkVersion 30](https://img.shields.io/badge/compileSdkVersion-30-yellow.svg?style=true)
 [![maven-central](https://img.shields.io/maven-central/v/com.github.andremion/floatingnavigationview.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.andremion%7Cfloatingnavigationview%7C1.2.0%7Caar)
 
 [![Android Arsenal Floating-Navigation-View](https://img.shields.io/badge/Android%20Arsenal-Floating--Navigation--View-green.svg?style=true)](https://android-arsenal.com/details/1/4134)
