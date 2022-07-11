@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test-reports
-          path: '**/build/reports/tests/'
+          path: 'sample/build/reports/tests/'
 
   android_test_job:
     name: Android Tests
@@ -74,7 +74,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: android-test-reports
-          path: '**/build/reports/androidTests/'
+          path: 'sample/build/reports/androidTests/'
 
   build_job:
     name: Building the APK
@@ -101,4 +101,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: apk
-          path: app/build/outputs/apk/debug/**.apk
+          path: sample/build/outputs/apk/debug/**.apk
